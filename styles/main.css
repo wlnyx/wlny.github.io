@@ -2069,17 +2069,17 @@ pre > span.copy-code:hover {
   font-weight: bold;
 }
 body {
-      background-color: #eee;
+      background-color: #dbe4ff;
     }
     .nav-toggle .line {
-      background-color: #eee !important;
+      background-color: #dbe4ff !important;
     }.header {
-        width: 960px;
+        width: 1460px;
         margin: 0 auto;
       }
 
       .main-continer {
-        width: 960px;
+        width: 1460px;
         margin: 0 auto;
       }
     body {
@@ -2176,7 +2176,7 @@ body {
       color: #fc6423;
       border-bottom-color: #fc6423;
     }.bg-color {
-      background-color: #fffffffe;
+      background-color: #f8f9fafe;
     }
     .gemini .blog-header, .gemini .sidebar-wrapper, .gemini .article-wrapper, .gemini .post, .gemini .page, .gemini .section, .gemini .section-box, .gemini .sidebar-box, .gemini .friends-section {
       border-radius: 10px;
