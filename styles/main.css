@@ -2092,7 +2092,7 @@ body {
       border-bottom-color: #555;
     }
     .archive-timeline-box::after, .tag-timeline-wrapper::after {
-      background: #eeeeeefe;
+      background: #ced4dafe;
     }h1, h2, h3, h4, h5, h6 {
       color: #555;
     }
@@ -2176,7 +2176,7 @@ body {
       color: #fa5252;
       border-bottom-color: #fa5252;
     }.bg-color {
-      background-color: #ffe3e3fe;
+      background-color: #fff5f5fe;
     }
     .gemini .blog-header, .gemini .sidebar-wrapper, .gemini .article-wrapper, .gemini .post, .gemini .page, .gemini .section, .gemini .section-box, .gemini .sidebar-box, .gemini .friends-section {
       border-radius: 10px;
