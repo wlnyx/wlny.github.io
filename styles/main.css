@@ -2201,15 +2201,15 @@ body {
     }.box-shadow-wrapper {
       box-shadow: none !important;
     }body {
-      cursor: default;
+      cursor: url('/media/curs/simpler_alt.cur'), default;
     }a {
-      cursor: pointer;
+      cursor: url('/media/curs/simpler_link.cur'), pointer !important;
     }input, textarea, code {
-      cursor: text;
+      cursor: url('/media/curs/simpler_beam.cur'), text !important;
     }code > span.copy-code {
-      cursor: pointer;
+      cursor: url('/media/curs/simpler_beam.cur'), text !important;
     }.post img {
-      cursor: zoom-in;
+      cursor: url('/media/curs/simpler_nesw.cur'), zoom-in !important;
     }.post img {
-      cursor: zoom-out;
+      cursor: url('/media/curs/simpler_nwse.cur'), zoom-out !important;
     }
