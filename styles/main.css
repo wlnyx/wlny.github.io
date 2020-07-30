@@ -2200,7 +2200,9 @@ pre > span.copy-code:hover {
     }
     .mist .site-title i {
       background: #FFFFFF19;
-    }.box-shadow-wrapper {
+    }.bg-img img {
+        filter: blur(10px)
+      }.box-shadow-wrapper {
       box-shadow: none !important;
     }body {
       cursor: url('/media/curs/simpler_alt.cur'), default;
