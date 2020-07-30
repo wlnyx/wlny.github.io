@@ -2068,9 +2068,7 @@ pre > span.copy-code:hover {
 .hljs-strong {
   font-weight: bold;
 }
-.bg-color .bg-color {
-      background: transparent !important;
-    }body {
+body {
       background-color: #dbe4ff;
     }
     .nav-toggle .line {
@@ -2094,7 +2092,7 @@ pre > span.copy-code:hover {
       border-bottom-color: #555;
     }
     .archive-timeline-box::after, .tag-timeline-wrapper::after {
-      background: #eeeeeec;
+      background: #eeeeeefe;
     }h1, h2, h3, h4, h5, h6 {
       color: #555;
     }
@@ -2138,11 +2136,11 @@ pre > span.copy-code:hover {
       }.nav-item a:hover {
         color: #222;
       }.nav-item-active {
-      background: #f9f9f9c;
+      background: #f9f9f9fe;
     }
 
     .nav-item:hover {
-      background: #f9f9f9c;
+      background: #f9f9f9fe;
       color: rgba(0, 0, 0, 0.98);
     }.site-author-image {
       border-radius: 50%;
@@ -2178,7 +2176,7 @@ pre > span.copy-code:hover {
       color: #fa5252;
       border-bottom-color: #fa5252;
     }.bg-color {
-      background-color: #ffe3e3c;
+      background-color: #ffe3e3fe;
     }
     .gemini .blog-header, .gemini .sidebar-wrapper, .gemini .article-wrapper, .gemini .post, .gemini .page, .gemini .section, .gemini .section-box, .gemini .sidebar-box, .gemini .friends-section {
       border-radius: 10px;
@@ -2193,13 +2191,13 @@ pre > span.copy-code:hover {
         background: #000 !important;
       }
     .brand {
-      background: #000000c;
+      background: #000000fe;
     }
     .main-title, .brand {
       color: #FFF !important;
     }
     .mist .site-title i {
-      background: #FFFFFFc;
+      background: #FFFFFFfe;
     }.box-shadow-wrapper {
       box-shadow: none !important;
     }body {
