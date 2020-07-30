@@ -8,7 +8,7 @@
 <meta name="keywords" content="wlny的个人博客">
 <meta name="description" content="">
 <meta name="theme-color" content="#000">
-<title>洛谷 P1002 过河卒 | wlny&#39;s blog</title>
+<title>Ping检测 | wlny&#39;s blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1596114101872">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -39,8 +39,8 @@
   })();
 </script>
 
-  <meta name="description" content="洛谷 P1002 过河卒" />
-  <meta name="keywords" content="洛谷,算法" />
+  <meta name="description" content="Ping检测" />
+  <meta name="keywords" content="" />
 </head>
 
 <body>
@@ -186,8 +186,7 @@
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            <div class="post-side-meta" id="post_side_meta">
-              
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -255,198 +254,6 @@
 
 
 </div>
-            </div>
-            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
-              <div class="toc-box right-motion">
-  <div class="toc-wrapper auto-number auto"
-    id="toc_wrapper">
-    <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0">题目描述</a></li>
-<li><a href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F">输入格式</a></li>
-<li><a href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F">输出格式</a></li>
-<li><a href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF">解题思路</a></li>
-</ul>
-</li>
-</ul>
-
-  </div>
-</div>
-
-<script>
-
-  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
-  let active = 'active-show', activeClass = 'active-current';
-  let tocWrapper = document.querySelector('#toc_wrapper');
-  let tocContent = tocWrapper.children[0];
-  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
-
-  function addTocNumber(elem, deep) {
-    if (!elem) {
-      return;
-    }
-    let prop = elem.__proto__;
-
-    if (prop === HTMLUListElement.prototype) {
-      for (let i = 0; i < elem.children.length; i++) {
-        addTocNumber(elem.children[i], deep + (i + 1) + '.');
-      }
-    } else if (prop === HTMLLIElement.prototype) {
-      // 保存li元素
-      if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
-        lList.push(elem);
-      }
-      for (let i = 0; i < elem.children.length; i++) {
-        let cur = elem.children[i];
-        if (cur.__proto__ === HTMLAnchorElement.prototype) {
-          if (autoNumber) {
-            cur.text = deep + ' ' + cur.text;
-          }
-        } else if (cur.__proto__ === HTMLUListElement.prototype) {
-          addTocNumber(cur, deep);
-        }
-      }
-    }
-  }
-
-  function removeParentActiveClass() {
-    let parents = tocContent.querySelectorAll('.' + active)
-    parents.forEach(function (elem) {
-      elem.classList.remove(active);
-    });
-  }
-
-  function addActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.add(activeClass);
-    }
-  }
-
-  function removeActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.remove(activeClass);
-    }
-  }
-
-  function addActiveLiElemment(elem, parent) {
-    if (!elem || elem === parent) {
-      return;
-    } else {
-      if (elem.__proto__ === HTMLLIElement.prototype) {
-        elem.classList.add(active);
-      }
-      addActiveLiElemment(elem.parentElement, parent);
-    }
-  }
-
-  function showToc() {
-    if (tocWrapper) {
-      postBody = document.querySelector('#post_body');
-      for (let i = 0; i < postBody.children.length; i++) {
-        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
-          hList.push(postBody.children[i]);
-        }
-      }
-      if (tocWrapper.classList.contains('compress')) {
-        tocContent.classList.add('closed');
-      } else if (tocWrapper.classList.contains('no_compress')) {
-        tocContent.classList.add('expanded');
-      } else {
-        if (hList.length > 10) {
-          active = 'active-hidden'
-          tocContent.classList.add('closed');
-        } else {
-          tocContent.classList.add('expanded');
-        }
-      }
-    }
-  }
-
-  (function () {
-    // 处理不是从#一级标题开始目录
-    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
-      let con = tocContent.children[0].children[0];
-      tocContent.innerHTML = con.innerHTML;
-    }
-    let markdownItTOC = document.querySelector('.markdownIt-TOC');
-    let innerHeight = window.innerHeight;
-    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
-    addTocNumber(tocContent, '');
-  })();
-
-  document.addEventListener('scroll', function (e) {
-    if (lList.length <= 0) {
-      return;
-    }
-    let scrollTop = document.scrollingElement.scrollTop + 10;
-    let dir;
-
-    if (lastTop - scrollTop > 0) {
-      dir = 'up';
-    } else {
-      dir = 'down';
-    }
-
-    lastTop = scrollTop;
-    if (scrollTop <= 0) {
-      if (lastIndex >= 0 && lastIndex < hList.length) {
-        lList[lastIndex].classList.remove(activeClass);
-      }
-      return;
-    }
-
-    let current = 0, hasFind = false;
-    for (let i = 0; i < hList.length; i++) {
-      if (hList[i].offsetTop > scrollTop) {
-        current = i;
-        hasFind = true;
-        break;
-      }
-    }
-    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
-      current = hList.length - 1;
-    } else {
-      current--;
-    }
-    if (dir === 'down') {
-      if (current > lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex)
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    } else {
-      if (current < lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex);
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    }
-  });
-
-
-  window.addEventListener('load', function () {
-    showToc();
-    document.querySelector('#sidebar').style = 'display: block;';
-    tocWrapper.classList.add('toc-active');
-    setTimeout(function () {
-      if ("createEvent" in document) {
-        let evt = document.createEvent("HTMLEvents");
-        evt.initEvent("scroll", false, true);
-        document.dispatchEvent(evt);
-      }
-      else {
-        document.fireEvent("scroll");
-      }
-    }, 500)
-  })
-
-</script>
-            </div>
           
         
       </div>
@@ -534,51 +341,38 @@
           <div class="section bg-color post post-page">
             <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://5n7xe3.coding-pages.com/post/luogu-p1002/">
-      洛谷 P1002 过河卒
+    <a class="post-title-link" href="https://5n7xe3.coding-pages.com/post/ping/">
+      Ping检测
     </a>
   </h1>
   <div class="post-meta">
     
+    <span class="meta-item">
+      <i class="fa fa-thumb-tack"></i>
+      <span>置顶</span>
+      <span class="post-meta-divider">|</span>
+    </span>
+    
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-07-28</span>
+      <span>2020-07-30</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show">分类于</span>
-      
-      
-      <a href="https://5n7xe3.coding-pages.com/tag/_vcNE7546/">
-        <span>洛谷</span>
-      </a>、
-      
-      
-      
-      <a href="https://5n7xe3.coding-pages.com/tag/-0fIDXCMP/">
-        <span>算法</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
+      <span>0分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>431<span class="pc-show">字数</span></span>
+      <span>0<span class="pc-show">字数</span></span>
     </span>
     
     
     
-    <span id="/post/luogu-p1002/" data-flag-title="洛谷 P1002 过河卒" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/ping/" data-flag-title="Ping检测" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span>浏览量：<span class="leancloud-visitors-count"></span></span>
@@ -587,97 +381,7 @@
   </div>
 </header>
             <div class="post-body next-md-body" id="post_body">
-              <h2 id="题目描述">题目描述</h2>
-<p>棋盘上 A 点有一个过河卒，需要走到目标 B 点。卒行走的规则：可以向下、或者向右。同时在棋盘上 C 点有一个对方的马，该马所在的点和所有跳跃一步可达的点称为对方马的控制点。因此称之为“马拦过河卒”。</p>
-<p>棋盘用坐标表示，A 点 (0, 0)、B 点 (n, m)，同样马的位置坐标是需要给出的。<br>
-<img src="https://img-blog.csdnimg.cn/20200727131444751.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg5NTAxMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-现在要求你计算出卒从 A 点能够到达 B 点的路径的条数，假设马的位置是固定不动的，并不是卒走一步马走一步。</p>
-<h2 id="输入格式">输入格式</h2>
-<p>一行四个正整数，分别表示 B 点坐标和马的坐标。</p>
-<h2 id="输出格式">输出格式</h2>
-<p>一个整数，表示所有的路径条数。</p>
-<h2 id="解题思路">解题思路</h2>
-<p>典型动态规划的题目。<br>
-<strong>优化子结构：</strong><br>
-想要走到 B 点，只能从上方或者左方来，设到达点(x , y)的路径条数为f (x , y) ，则到达 B 点的路径条数为f (n , m)，那么到 B 点左侧路径条数为 f (n , m-1) ，B 点上方路径条数为 f (n-1, m) ， 有关系式： <strong>f (n , m) = f (n , m-1) + f (n-1, m)</strong><br>
-<strong>子问题重叠性：</strong><br>
-<img src="https://img-blog.csdnimg.cn/20200727135303283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg5NTAxMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<hr>
-<p>构建一个二维数组来存储路径数,从第一行第一列开始填，第一行第一列全为 1</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>...</th>
-<th>m - 1</th>
-<th>m</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>...</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>2</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>...</td>
-<td>...</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>n - 1</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>n</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>需注意，设 C 为马控制点数组，对所有马控制点(x , y)，有f (x , y) = 0<br>
-按照关系式 <strong>f (n , m) = f (n , m-1) + f (n-1, m)</strong> 把所有点填完，f (n , m)  及所求答案</p>
-<hr>
-<p><strong>代码</strong></p>
-<p>略</p>
+              <figure data-type="image" tabindex="1"><img src="https://5n7xe3.coding-pages.com/post-images/1596114054046.png" alt="" loading="lazy"></figure>
 
             </div>
             <div class="post-footer">
@@ -688,7 +392,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://5n7xe3.coding-pages.com/post/luogu-p1002/" title="洛谷 P1002 过河卒">https://5n7xe3.coding-pages.com/post/luogu-p1002/</a>
+      <a href="https://5n7xe3.coding-pages.com/post/ping/" title="Ping检测">https://5n7xe3.coding-pages.com/post/ping/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -697,20 +401,16 @@
   </ul>
   <div class="tags">
     
-      <a href="https://5n7xe3.coding-pages.com/tag/_vcNE7546/"># 洛谷</a>
-    
-      <a href="https://5n7xe3.coding-pages.com/tag/-0fIDXCMP/"># 算法</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Ping检测" href="https://5n7xe3.coding-pages.com/post/ping/">Ping检测</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Ping检测" href="https://5n7xe3.coding-pages.com/post/ping/">上一篇</a>
-      
     </div>
     <div class="nav-next">
+      
+        <a class="nav-pc-next" title="洛谷 P1002 过河卒" href="https://5n7xe3.coding-pages.com/post/luogu-p1002/">洛谷 P1002 过河卒</a>
+        <a class="nav-mobile-next" title="洛谷 P1002 过河卒" href="https://5n7xe3.coding-pages.com/post/luogu-p1002/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
