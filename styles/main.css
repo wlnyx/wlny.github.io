@@ -2203,7 +2203,7 @@ body {
     }body {
       cursor: url('/media/curs/simpler_alt.cur'), default;
     }a {
-      cursor: url('/media/curs/simpler_link.cur'), pointer !important;
+      cursor: url('/media/curs/simpler_alt.cur'), pointer !important;
     }input, textarea, code {
       cursor: url('/media/curs/simpler_beam.cur'), text !important;
     }code > span.copy-code {
