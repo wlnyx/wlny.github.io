@@ -2054,12 +2054,12 @@ p > code {
 body {
       background-color: #dbe4ff;
     }.header {
-        width: 80%;
+        width: 1100px;
         margin: 0 auto;
       }
 
       .main-continer {
-        width: 80%;
+        width: 1100px;
         margin: 0 auto;
       }
     body {
@@ -2159,7 +2159,7 @@ body {
       color: #fa5252;
       border-bottom-color: #fa5252;
     }.bg-color {
-      background-color: #ffe3e3fe;
+      background-color: #f8f9fafe;
     }
     .gemini .blog-header, .gemini .sidebar-wrapper, .gemini .article-wrapper, .gemini .post, .gemini .page, .gemini .section, .gemini .section-box, .gemini .sidebar-box, .gemini .friends-section {
       border-radius: 10px;
@@ -2172,7 +2172,9 @@ body {
     }
     .head-top-line {
       background: #000;
-    }
+    }.pace .pace-activity {
+        background: #000 !important;
+      }
     .brand {
       background: #000000fe;
     }
