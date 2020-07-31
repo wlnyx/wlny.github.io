@@ -2051,15 +2051,17 @@ p > code {
     margin-bottom: 10px;
   }
 }
-body {
-      background-color: #dbe4ff;
+.bg-color .bg-color {
+      background: transparent !important;
+    }body {
+      background-color: #f8f9fa;
     }.header {
-        width: 700px;
+        width: 960px;
         margin: 0 auto;
       }
 
       .main-continer {
-        width: 700px;
+        width: 960px;
         margin: 0 auto;
       }
     body {
@@ -2072,7 +2074,7 @@ body {
       border-bottom-color: #555;
     }
     .archive-timeline-box::after, .tag-timeline-wrapper::after {
-      background: #ced4dafe;
+      background: #ced4dad8;
     }h1, h2, h3, h4, h5, h6 {
       color: #555;
     }
@@ -2119,11 +2121,11 @@ body {
       }.nav-item a:hover {
         color: #222;
       }.nav-item-active {
-      background: #ffe3e3fe;
+      background: #ffe3e3d8;
     }
 
     .nav-item:hover {
-      background: #ffe3e3fe;
+      background: #ffe3e3d8;
       color: rgba(0, 0, 0, 0.98);
     }.site-author-image {
       border-radius: 50%;
@@ -2159,7 +2161,7 @@ body {
       color: #fa5252;
       border-bottom-color: #fa5252;
     }.bg-color {
-      background-color: #f8f9fafe;
+      background-color: #f8f9fad8;
     }
     .gemini .blog-header, .gemini .sidebar-wrapper, .gemini .article-wrapper, .gemini .post, .gemini .page, .gemini .section, .gemini .section-box, .gemini .sidebar-box, .gemini .friends-section {
       border-radius: 10px;
@@ -2168,31 +2170,29 @@ body {
       border-radius: 10px;
     }
     .site-meta {
-      background: #a5d8ff !important;
+      background: #3bc9db !important;
     }
     .head-top-line {
-      background: #a5d8ff;
+      background: #3bc9db;
     }
       .pace .pace-activity {
-        border-top-color: #a5d8ff !important;
-        border-left-color: #a5d8ff !important;
+        border-top-color: #3bc9db !important;
+        border-left-color: #3bc9db !important;
       }
       .pace .pace-progress {
-        background-color: #a5d8ff !important;
+        background-color: #3bc9db !important;
       }
       .pace-running .head-top-line {
         background: transparent;
       }
     .brand {
-      background: #a5d8fffe;
+      background: #3bc9dbd8;
     }
     .main-title, .brand {
       color: #FFF !important;
     }
     .mist .site-title i {
-      background: #FFFFFFfe;
-    }.box-shadow-wrapper {
-      box-shadow: none !important;
+      background: #FFFFFFd8;
     }body {
       cursor: url('/media/curs/simpler_alt.cur'), default;
     }a {
