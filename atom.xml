@@ -2,13 +2,37 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wlny.site</id>
     <title>Solra</title>
-    <updated>2020-07-31T09:37:38.237Z</updated>
+    <updated>2020-07-31T14:18:43.961Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wlny.site"/>
     <link rel="self" href="https://wlny.site/atom.xml"/>
     <logo>https://wlny.site/images/avatar.png</logo>
     <icon>https://wlny.site/favicon.ico</icon>
     <rights>All rights reserved 2020, Solra</rights>
+    <entry>
+        <title type="html"><![CDATA[BUUCTF Crypto Writeup （持续更新）]]></title>
+        <id>https://wlny.site/post/buuctf-crypto-writeup-chi-xu-geng-xin/</id>
+        <link href="https://wlny.site/post/buuctf-crypto-writeup-chi-xu-geng-xin/">
+        </link>
+        <updated>2020-07-31T14:03:10.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="bjdctf-2ndcat_flag">[BJDCTF 2nd]cat_flag</h2>
+<p><strong>题目：</strong></p>
+<figure data-type="image" tabindex="1"><img src="https://wlny.site/post-images/1596205095450.gif" alt="" loading="lazy"></figure>
+<p><strong>思路：</strong><br>
+观察到每一行都有8只猫，有的拿饭团有的拿鸡腿，看上去和8位二进制数很像，把饭团当作0，鸡腿当作1，将表编码</p>
+<p>01000010 B<br>
+01001010 J<br>
+01000100 T<br>
+01111011 {<br>
+01001101 M<br>
+00100001 !<br>
+01100001 a<br>
+00110000 0<br>
+01111110 ~<br>
+01111101 }</p>
+<p>观察到这些二进制数都是0开头，联想到‘A’的ascii码是01000001，猜想这些二进制数和ascii码有关，将其全转化为字符，得到flag：BJD{M!a0~}</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[洛谷 P1002 过河卒]]></title>
         <id>https://wlny.site/post/luogu-p1002/</id>
