@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://https://wlnyx.github.io/</id>
+    <id>https://https://www.wlny.site</id>
     <title>Solra</title>
-    <updated>2020-07-31T07:33:55.530Z</updated>
+    <updated>2020-07-31T07:35:54.056Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://https://wlnyx.github.io/"/>
-    <link rel="self" href="https://https://wlnyx.github.io/atom.xml"/>
-    <logo>https://https://wlnyx.github.io/images/avatar.png</logo>
-    <icon>https://https://wlnyx.github.io/favicon.ico</icon>
+    <link rel="alternate" href="https://https://www.wlny.site"/>
+    <link rel="self" href="https://https://www.wlny.site/atom.xml"/>
+    <logo>https://https://www.wlny.site/images/avatar.png</logo>
+    <icon>https://https://www.wlny.site/favicon.ico</icon>
     <rights>All rights reserved 2020, Solra</rights>
     <entry>
         <title type="html"><![CDATA[Ping检测]]></title>
-        <id>https://https://wlnyx.github.io/post/ping/</id>
-        <link href="https://https://wlnyx.github.io/post/ping/">
+        <id>https://https://www.wlny.site/post/ping/</id>
+        <link href="https://https://www.wlny.site/post/ping/">
         </link>
         <updated>2020-07-30T13:00:21.000Z</updated>
-        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://https://wlnyx.github.io//post-images/1596114054046.png" alt="" loading="lazy"></figure>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://https://www.wlny.site/post-images/1596114054046.png" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[洛谷 P1002 过河卒]]></title>
-        <id>https://https://wlnyx.github.io/post/luogu-p1002/</id>
-        <link href="https://https://wlnyx.github.io/post/luogu-p1002/">
+        <id>https://https://www.wlny.site/post/luogu-p1002/</id>
+        <link href="https://https://www.wlny.site/post/luogu-p1002/">
         </link>
         <updated>2020-07-28T04:16:52.000Z</updated>
         <content type="html"><![CDATA[<h2 id="题目描述">题目描述</h2>
