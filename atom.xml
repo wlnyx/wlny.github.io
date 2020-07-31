@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wlny.site</id>
-    <title>wlny&apos;s blog</title>
-    <updated>2020-07-31T06:19:50.682Z</updated>
+    <title>Solra</title>
+    <updated>2020-07-31T06:50:46.897Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wlny.site"/>
     <link rel="self" href="https://wlny.site/atom.xml"/>
     <logo>https://wlny.site/images/avatar.png</logo>
     <icon>https://wlny.site/favicon.ico</icon>
-    <rights>All rights reserved 2020, wlny&apos;s blog</rights>
+    <rights>All rights reserved 2020, Solra</rights>
     <entry>
         <title type="html"><![CDATA[Ping检测]]></title>
         <id>https://wlny.site/post/ping/</id>
