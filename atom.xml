@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wlny.site</id>
     <title>Solra</title>
-    <updated>2020-07-31T14:18:43.961Z</updated>
+    <updated>2020-07-31T14:41:30.931Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wlny.site"/>
     <link rel="self" href="https://wlny.site/atom.xml"/>
@@ -30,7 +30,14 @@
 00110000 0<br>
 01111110 ~<br>
 01111101 }</p>
-<p>观察到这些二进制数都是0开头，联想到‘A’的ascii码是01000001，猜想这些二进制数和ascii码有关，将其全转化为字符，得到flag：BJD{M!a0~}</p>
+<p>观察到这些二进制数都是0开头，联想到‘A’的ascii码是01000001，猜想这些二进制数和ascii码有关，将其全转化为字符，得到：<strong>BJD{M!a0~}</strong></p>
+<h2 id="bjdctf-2nd燕言燕语-y1ng">[BJDCTF 2nd]燕言燕语-y1ng</h2>
+<p><strong>题目：</strong><br>
+小燕子，穿花衣，年年春天来这里，我问燕子你为啥来，燕子说:<br>
+79616E7A69205A4A517B78696C7A765F6971737375686F635F73757A6A677D20</p>
+<p><strong>思路： **<br>
+一开始以为是MD5，经过解码发现不对，再仔细观察，没有一个超过F的字母，考虑是个十六进制序列，将其转化为字符串得</strong>yanzi ZJQ{xilzv_iqssuhoc_suzjg}**<br>
+一开始以为是栅栏密码，解不出来，考虑yanzi作为密钥，是维吉尼亚密码，经过解码得到：<strong>BJD{yanzi_jiushige_shabi}</strong></p>
 ]]></content>
     </entry>
     <entry>

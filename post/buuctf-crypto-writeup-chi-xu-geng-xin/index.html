@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="theme-color" content="#3A5FCD">
 <title>BUUCTF Crypto Writeup （持续更新） | Solra</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/wlnyx/wlnyx.github.io@master/favicon.ico?v=1596205115273">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/wlnyx/wlnyx.github.io@master/favicon.ico?v=1596206487931">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wlnyx/wlnyx.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wlnyx/wlnyx.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -282,6 +282,7 @@
 <li>
 <ul>
 <li><a href="#bjdctf-2ndcat_flag">[BJDCTF 2nd]cat_flag</a></li>
+<li><a href="#bjdctf-2nd%E7%87%95%E8%A8%80%E7%87%95%E8%AF%AD-y1ng">[BJDCTF 2nd]燕言燕语-y1ng</a></li>
 </ul>
 </li>
 </ul>
@@ -569,7 +570,7 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>120<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>243<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
@@ -598,7 +599,14 @@
 00110000 0<br>
 01111110 ~<br>
 01111101 }</p>
-<p>观察到这些二进制数都是0开头，联想到‘A’的ascii码是01000001，猜想这些二进制数和ascii码有关，将其全转化为字符，得到flag：BJD{M!a0~}</p>
+<p>观察到这些二进制数都是0开头，联想到‘A’的ascii码是01000001，猜想这些二进制数和ascii码有关，将其全转化为字符，得到：<strong>BJD{M!a0~}</strong></p>
+<h2 id="bjdctf-2nd燕言燕语-y1ng">[BJDCTF 2nd]燕言燕语-y1ng</h2>
+<p><strong>题目：</strong><br>
+小燕子，穿花衣，年年春天来这里，我问燕子你为啥来，燕子说:<br>
+79616E7A69205A4A517B78696C7A765F6971737375686F635F73757A6A677D20</p>
+<p><strong>思路： **<br>
+一开始以为是MD5，经过解码发现不对，再仔细观察，没有一个超过F的字母，考虑是个十六进制序列，将其转化为字符串得</strong>yanzi ZJQ{xilzv_iqssuhoc_suzjg}**<br>
+一开始以为是栅栏密码，解不出来，考虑yanzi作为密钥，是维吉尼亚密码，经过解码得到：<strong>BJD{yanzi_jiushige_shabi}</strong></p>
 
             </div>
             
@@ -1167,7 +1175,14 @@
 00110000 0&lt;br&gt;
 01111110 ~&lt;br&gt;
 01111101 }&lt;/p&gt;
-&lt;p&gt;观察到这些二进制数都是0开头，联想到‘A’的ascii码是01000001，猜想这些二进制数和ascii码有关，将其全转化为字符，得到flag：BJD{M!a0~}&lt;/p&gt;
+&lt;p&gt;观察到这些二进制数都是0开头，联想到‘A’的ascii码是01000001，猜想这些二进制数和ascii码有关，将其全转化为字符，得到：&lt;strong&gt;BJD{M!a0~}&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;bjdctf-2nd燕言燕语-y1ng&#34;&gt;[BJDCTF 2nd]燕言燕语-y1ng&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;题目：&lt;/strong&gt;&lt;br&gt;
+小燕子，穿花衣，年年春天来这里，我问燕子你为啥来，燕子说:&lt;br&gt;
+79616E7A69205A4A517B78696C7A765F6971737375686F635F73757A6A677D20&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;思路： **&lt;br&gt;
+一开始以为是MD5，经过解码发现不对，再仔细观察，没有一个超过F的字母，考虑是个十六进制序列，将其转化为字符串得&lt;/strong&gt;yanzi ZJQ{xilzv_iqssuhoc_suzjg}**&lt;br&gt;
+一开始以为是栅栏密码，解不出来，考虑yanzi作为密钥，是维吉尼亚密码，经过解码得到：&lt;strong&gt;BJD{yanzi_jiushige_shabi}&lt;/strong&gt;&lt;/p&gt;
 ">BUUCTF Crypto Writeup （持续更新）</a>
       </div>
       
