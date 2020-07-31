@@ -2170,17 +2170,17 @@ p > code {
       border-radius: 10px;
     }
     .site-meta {
-      background: #000 !important;
+      background: #a5d8ff !important;
     }
     .head-top-line {
-      background: #000;
+      background: #a5d8ff;
     }
       .pace .pace-activity {
-        border-top-color: #000 !important;
-        border-left-color: #000 !important;
+        border-top-color: #a5d8ff !important;
+        border-left-color: #a5d8ff !important;
       }
       .pace .pace-progress {
-        background-color: #000 !important;
+        background-color: #a5d8ff !important;
       }
       .pace-running .head-top-line {
         background: transparent;
