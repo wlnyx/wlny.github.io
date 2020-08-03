@@ -2,13 +2,33 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wlny.site</id>
     <title>Solra</title>
-    <updated>2020-08-02T05:16:02.194Z</updated>
+    <updated>2020-08-03T07:49:51.498Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wlny.site"/>
     <link rel="self" href="https://wlny.site/atom.xml"/>
     <logo>https://wlny.site/images/avatar.png</logo>
     <icon>https://wlny.site/favicon.ico</icon>
     <rights>All rights reserved 2020, Solra</rights>
+    <entry>
+        <title type="html"><![CDATA[Jarvis OJ Crypto Writeup]]></title>
+        <id>https://wlny.site/post/jarvis-oj-crypto-writeup/</id>
+        <link href="https://wlny.site/post/jarvis-oj-crypto-writeup/">
+        </link>
+        <updated>2020-08-03T07:41:45.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="xman2019xcaesar">[xman2019]xcaesar</h2>
+<p>题目给出了提示，和凯撒密码有关，打开下载完的.py文件观察代码<br>
+def caesar_encrypt(m,k):<br>
+r=&quot;&quot;<br>
+for i in m:<br>
+r+=chr((ord(i)+k)%128)<br>
+return r<br>
+from secret import m,k<br>
+print caesar_encrypt(m,k).encode(&quot;base64&quot;)<br>
+#output:bXNobgJyaHB6aHRwdGgE<br>
+可以看出加密过程是先进行了一次凯撒，再进行了一次base64加密<br>
+反过来base64解密再凯撒解密就可以得出答案</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[i春秋 Crypto Writeup]]></title>
         <id>https://wlny.site/post/i-chun-qiu-crypto-writeup/</id>
@@ -416,6 +436,11 @@ http://ctf.ssleye.com/cvencode.html</p>
 <p><strong>思路：</strong><br>
 一开始以为是MD5，经过解码发现不对，再仔细观察，没有一个超过F的字母，考虑是个十六进制序列，将其转化为字符串得<strong>yanzi ZJQ{xilzv_iqssuhoc_suzjg}</strong><br>
 一开始以为是栅栏密码，解不出来，考虑yanzi作为密钥，是维吉尼亚密码，经过解码得到：<strong>BJD{yanzi_jiushige_shabi}</strong></p>
+<h2 id="权限获得第一步">权限获得第一步</h2>
+<p><strong>题目：</strong><br>
+Administrator:500:806EDC27AA52E314AAD3B435B51404EE:F4AD50F57683D4260DFD48AA351A17A8:::</p>
+<p><strong>思路：</strong><br>
+这是MD5，密文是最后一串字符串，<strong>F4AD50F57683D4260DFD48AA351A17A8</strong>，解密后是<strong>3617656</strong></p>
 ]]></content>
     </entry>
     <entry>
