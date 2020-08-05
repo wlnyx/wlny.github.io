@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wlny.site</id>
     <title>Solra</title>
-    <updated>2020-08-03T08:56:14.072Z</updated>
+    <updated>2020-08-05T15:34:31.010Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wlny.site"/>
     <link rel="self" href="https://wlny.site/atom.xml"/>
@@ -188,6 +188,64 @@ m = pow(c,d,n)
 print(binascii.unhexlify(hex(m)[2:].strip(&quot;L&quot;)))
 </code></pre>
 <p>运行得到flag</p>
+<h2 id="影之密码">影之密码</h2>
+<p>请分析下列密文进行解密 8842101220480224404014224202480122 得到flag，flag为8位大写字母<br>
+提示是8位字母，数了一下发现34位数字，显然不能是把数字平分成8串，仔细观察到好像有7个0，把0换成空格果然得到8串数字<strong>88421 122 48 2244 4 142242 248 122</strong><br>
+看到每个数字都是2的指数倍，我就先把每串中的每个数字换成指数加起来，得到8个小于26的数字，转换成英文后提交提示错误，<br>
+然后换个思路，直接把每串中的每个数字加起来，得到<strong>23 5 12 12 4 15 14 5</strong><br>
+把数字转换成英文得到<strong>WELLDONE</strong>，这回应该没错，提交显示正确</p>
+<h2 id="xman2019xbk">[xman2019]xbk</h2>
+<p>打开文件观察</p>
+<pre><code>n=47966708183289639962501363163761864399454241691014467172805658518368423135168025285144721028476297179341434450931955275325060173656301959484440112740411109153032840150659
+e=3
+c=10968126341413081941567552025256642365567988931403833266852196599058668508079150528128483441934584299102782386592369069626088211004467782012298322278772376088171342152839
+</code></pre>
+<p>先去factordb看看能不能分解，发现不能，再尝试用yafu分解，需要几个小时，看来不能直接分解。再仔细观察，发现 e = 3 ，百度一下 e = 3 时RSA怎么解密，在freebuf找到一篇讲解<a href="https://www.freebuf.com/sectool/148898.html">低加密指数攻击</a>的文章，根据 c = <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>m</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">m^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">e</span></span></span></span></span></span></span></span></span></span></span> +k*n这个表达式来爆破求解，编写爆破脚本</p>
+<pre><code class="language-python">from gmpy2 import iroot
+from libnum import s2n, n2s
+c = 10968126341413081941567552025256642365567988931403833266852196599058668508079150528128483441934584299102782386592369069626088211004467782012298322278772376088171342152839
+n = 47966708183289639962501363163761864399454241691014467172805658518368423135168025285144721028476297179341434450931955275325060173656301959484440112740411109153032840150659
+k = 0
+while 1:
+    res = iroot(c+k*n,3)
+    if(res[1]==True):
+        print (res)
+        break
+    print(&quot;k=&quot;+str(k))
+    k=k+1
+m = 2511413510841925395932258515055884434794093321076452844669
+print (libnum.n2s(m))
+</code></pre>
+<p>得到flag，具体rsa各种攻击方式原理以后会单独写一篇文章总结一下</p>
+<h2 id="medium-rsa">Medium RSA</h2>
+<p>打开下载的压缩包，里面有两个文件，flag.enc, pubkey.pem<br>
+这种文件需要用到openssl打开，下载安装完后，在题目文件夹中使用如下cmd指令读取公钥：</p>
+<pre><code>openssl rsa -pubin -in pubkey.pem -text -modulus
+</code></pre>
+<p>结果如图<br>
+<img src="https://wlny.site/post-images/1596620259635.png" alt="" loading="lazy"><br>
+其中</p>
+<pre><code>e = 65537
+n = C2636AE5C3D8E43FFB97AB09028F1AAC6C0BF6CD3D70EBCA281BFFE97FBE30DD(16进制)
+</code></pre>
+<p>通过如下代码从文件中读取 n，e，c</p>
+<pre><code class="language-python">from Crypto.PublicKey import RSA
+with open('./pubkey.pem', 'r') as f:
+    key = RSA.importKey(f)
+    N = key.n
+    e = key.e
+with open('flag.enc', 'r') as f:
+    c = f.read().encode('hex')
+    c = int(c, 16)
+</code></pre>
+<p>之后步骤同其他rsa题</p>
+<h2 id="hard-rsa">hard RSA</h2>
+<p>打开压缩包，里面有两个文件，flag.enc, pubkey.pem，读取公钥<br>
+<img src="https://wlny.site/post-images/1596620597481.png" alt="" loading="lazy"></p>
+<pre><code>e = 2
+n = C2636AE5C3D8E43FFB97AB09028F1AAC6C0BF6CD3D70EBCA281BFFE97FBE30DD
+</code></pre>
+<p>这里是公钥为2的小公钥指数攻击</p>
 ]]></content>
     </entry>
     <entry>

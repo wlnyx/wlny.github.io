@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="theme-color" content="#3A5FCD">
 <title>Solra</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/wlnyx/wlnyx.github.io@master/favicon.ico?v=1596444970141">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/wlnyx/wlnyx.github.io@master/favicon.ico?v=1596641662207">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wlnyx/wlnyx.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wlnyx/wlnyx.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -281,6 +281,8 @@
           <small class="language" data-lan="tag">标签</small>
         </h2>
       </div>
+      
+      
       
       
       
@@ -709,6 +711,64 @@ m = pow(c,d,n)
 print(binascii.unhexlify(hex(m)[2:].strip(&amp;quot;L&amp;quot;)))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;运行得到flag&lt;/p&gt;
+&lt;h2 id=&#34;影之密码&#34;&gt;影之密码&lt;/h2&gt;
+&lt;p&gt;请分析下列密文进行解密 8842101220480224404014224202480122 得到flag，flag为8位大写字母&lt;br&gt;
+提示是8位字母，数了一下发现34位数字，显然不能是把数字平分成8串，仔细观察到好像有7个0，把0换成空格果然得到8串数字&lt;strong&gt;88421 122 48 2244 4 142242 248 122&lt;/strong&gt;&lt;br&gt;
+看到每个数字都是2的指数倍，我就先把每串中的每个数字换成指数加起来，得到8个小于26的数字，转换成英文后提交提示错误，&lt;br&gt;
+然后换个思路，直接把每串中的每个数字加起来，得到&lt;strong&gt;23 5 12 12 4 15 14 5&lt;/strong&gt;&lt;br&gt;
+把数字转换成英文得到&lt;strong&gt;WELLDONE&lt;/strong&gt;，这回应该没错，提交显示正确&lt;/p&gt;
+&lt;h2 id=&#34;xman2019xbk&#34;&gt;[xman2019]xbk&lt;/h2&gt;
+&lt;p&gt;打开文件观察&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;n=47966708183289639962501363163761864399454241691014467172805658518368423135168025285144721028476297179341434450931955275325060173656301959484440112740411109153032840150659
+e=3
+c=10968126341413081941567552025256642365567988931403833266852196599058668508079150528128483441934584299102782386592369069626088211004467782012298322278772376088171342152839
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;先去factordb看看能不能分解，发现不能，再尝试用yafu分解，需要几个小时，看来不能直接分解。再仔细观察，发现 e = 3 ，百度一下 e = 3 时RSA怎么解密，在freebuf找到一篇讲解&lt;a href=&#34;https://www.freebuf.com/sectool/148898.html&#34;&gt;低加密指数攻击&lt;/a&gt;的文章，根据 c = &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msup&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;m^e&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.664392em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.664392em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mathdefault mtight&#34;&gt;e&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; +k*n这个表达式来爆破求解，编写爆破脚本&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from gmpy2 import iroot
+from libnum import s2n, n2s
+c = 10968126341413081941567552025256642365567988931403833266852196599058668508079150528128483441934584299102782386592369069626088211004467782012298322278772376088171342152839
+n = 47966708183289639962501363163761864399454241691014467172805658518368423135168025285144721028476297179341434450931955275325060173656301959484440112740411109153032840150659
+k = 0
+while 1:
+    res = iroot(c+k*n,3)
+    if(res[1]==True):
+        print (res)
+        break
+    print(&amp;quot;k=&amp;quot;+str(k))
+    k=k+1
+m = 2511413510841925395932258515055884434794093321076452844669
+print (libnum.n2s(m))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;得到flag，具体rsa各种攻击方式原理以后会单独写一篇文章总结一下&lt;/p&gt;
+&lt;h2 id=&#34;medium-rsa&#34;&gt;Medium RSA&lt;/h2&gt;
+&lt;p&gt;打开下载的压缩包，里面有两个文件，flag.enc, pubkey.pem&lt;br&gt;
+这种文件需要用到openssl打开，下载安装完后，在题目文件夹中使用如下cmd指令读取公钥：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;openssl rsa -pubin -in pubkey.pem -text -modulus
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;结果如图&lt;br&gt;
+&lt;img src=&#34;https://wlny.site/post-images/1596620259635.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+其中&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;e = 65537
+n = C2636AE5C3D8E43FFB97AB09028F1AAC6C0BF6CD3D70EBCA281BFFE97FBE30DD(16进制)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过如下代码从文件中读取 n，e，c&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from Crypto.PublicKey import RSA
+with open(&#39;./pubkey.pem&#39;, &#39;r&#39;) as f:
+    key = RSA.importKey(f)
+    N = key.n
+    e = key.e
+with open(&#39;flag.enc&#39;, &#39;r&#39;) as f:
+    c = f.read().encode(&#39;hex&#39;)
+    c = int(c, 16)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;之后步骤同其他rsa题&lt;/p&gt;
+&lt;h2 id=&#34;hard-rsa&#34;&gt;hard RSA&lt;/h2&gt;
+&lt;p&gt;打开压缩包，里面有两个文件，flag.enc, pubkey.pem，读取公钥&lt;br&gt;
+&lt;img src=&#34;https://wlny.site/post-images/1596620597481.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;e = 2
+n = C2636AE5C3D8E43FFB97AB09028F1AAC6C0BF6CD3D70EBCA281BFFE97FBE30DD
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里是公钥为2的小公钥指数攻击&lt;/p&gt;
 ">Jarvis OJ Crypto Writeup</a>
       </div>
       
