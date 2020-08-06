@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wlny.site</id>
     <title>Solra</title>
-    <updated>2020-08-05T15:34:31.010Z</updated>
+    <updated>2020-08-06T13:05:24.979Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wlny.site"/>
     <link rel="self" href="https://wlny.site/atom.xml"/>
@@ -245,7 +245,74 @@ with open('flag.enc', 'r') as f:
 <pre><code>e = 2
 n = C2636AE5C3D8E43FFB97AB09028F1AAC6C0BF6CD3D70EBCA281BFFE97FBE30DD
 </code></pre>
-<p>这里是公钥为2的小公钥指数攻击</p>
+<p>这里公钥为2，利用rabin算法破解</p>
+<h2 id="xman2019xfz">[xman2019]xfz</h2>
+<p>打开压缩包发现两个文件，先看fez.py，这是加密过程</p>
+<pre><code>import os
+def xor(a,b):
+    assert len(a)==len(b)
+    c=&quot;&quot;
+    for i in range(len(a)):
+        c+=chr(ord(a[i])^ord(b[i]))
+    return c
+def round(M,K):
+    L=M[0:27]
+    R=M[27:54]
+    new_l=R
+    new_r=xor(xor(R,L),K)
+    return new_l+new_r
+def fez(m,K):
+    for i in K:
+        m=round(m,i)
+    return m
+
+K=[]
+for i in range(7):
+    K.append(os.urandom(27))
+m=open(&quot;flag&quot;,&quot;rb&quot;).read()
+assert len(m)&lt;54
+m+=os.urandom(54-len(m))
+
+test=os.urandom(54)
+print test.encode(&quot;hex&quot;)
+print fez(test,K).encode(&quot;hex&quot;)
+print fez(m,K).encode(&quot;hex&quot;)
+</code></pre>
+<p>简单来说就是把字符串分成两节交替和密钥进行异或操作<br>
+画出流程图，发现最后 fez(test,K) 和 fez(m,K) 都是形如<br>
+<strong>r ^ p + r ^ l ^ q</strong><br>
+的字符串结构，这样只要把 fez(test,K) 和  fez(m,K) 以及 test 左右两边单独拿出来互相异或就能得到 m 的左右两边，编写代码如下</p>
+<pre><code class="language-python">import os
+import libnum
+#异或操作照抄
+def xor(a,b):
+    assert len(a)==len(b)
+    c=&quot;&quot;
+    for i in range(len(a)):
+        c+=chr(ord(a[i])^ord(b[i]))
+    return c
+#从fez.log文件得到
+test='50543fc0bca1bb4f21300f0074990f846a8009febded0b2198324c1b31d2e2563c908dcabbc461f194e70527e03a807e9a478f9a56f7'
+utest='66bbd551d9847c1a10755987b43f8b214ee9c6ec2949eef01321b0bc42cffce6bdbd604924e5cbd99b7c56cf461561186921087fa1e9'
+um='44fc6f82bdd0dff9aca3e0e82cbb9d6683516524c245494b89c272a83d2b88452ec0bfa0a73ffb42e304fe3748896111b9bdf4171903'
+#编码为字符
+test = test.decode('hex')
+utest = utest.decode('hex')
+um = um.decode('hex')
+#分成左右两段
+um_l = um[0:27]
+um_r = um[27:54]
+utest_l = utest[0:27]
+utest_r = utest[27:54]
+test_l = test[0:27]
+test_r = test[27:54]
+#异或得到m左右两段
+m_r = xor(xor(um_l, utest_l), test_r)
+m_l = xor(xor(xor(xor(um_r, utest_r), test_r), test_l), m_r)
+#合并
+m = m_l + m_r
+print m
+</code></pre>
 ]]></content>
     </entry>
     <entry>

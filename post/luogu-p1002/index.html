@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="theme-color" content="#3A5FCD">
 <title>洛谷 P1002 过河卒 | Solra</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/wlnyx/wlnyx.github.io@master/favicon.ico?v=1596641662207">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/wlnyx/wlnyx.github.io@master/favicon.ico?v=1596719118614">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wlnyx/wlnyx.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wlnyx/wlnyx.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -1483,7 +1483,74 @@ with open(&#39;flag.enc&#39;, &#39;r&#39;) as f:
 &lt;pre&gt;&lt;code&gt;e = 2
 n = C2636AE5C3D8E43FFB97AB09028F1AAC6C0BF6CD3D70EBCA281BFFE97FBE30DD
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这里是公钥为2的小公钥指数攻击&lt;/p&gt;
+&lt;p&gt;这里公钥为2，利用rabin算法破解&lt;/p&gt;
+&lt;h2 id=&#34;xman2019xfz&#34;&gt;[xman2019]xfz&lt;/h2&gt;
+&lt;p&gt;打开压缩包发现两个文件，先看fez.py，这是加密过程&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import os
+def xor(a,b):
+    assert len(a)==len(b)
+    c=&amp;quot;&amp;quot;
+    for i in range(len(a)):
+        c+=chr(ord(a[i])^ord(b[i]))
+    return c
+def round(M,K):
+    L=M[0:27]
+    R=M[27:54]
+    new_l=R
+    new_r=xor(xor(R,L),K)
+    return new_l+new_r
+def fez(m,K):
+    for i in K:
+        m=round(m,i)
+    return m
+
+K=[]
+for i in range(7):
+    K.append(os.urandom(27))
+m=open(&amp;quot;flag&amp;quot;,&amp;quot;rb&amp;quot;).read()
+assert len(m)&amp;lt;54
+m+=os.urandom(54-len(m))
+
+test=os.urandom(54)
+print test.encode(&amp;quot;hex&amp;quot;)
+print fez(test,K).encode(&amp;quot;hex&amp;quot;)
+print fez(m,K).encode(&amp;quot;hex&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;简单来说就是把字符串分成两节交替和密钥进行异或操作&lt;br&gt;
+画出流程图，发现最后 fez(test,K) 和 fez(m,K) 都是形如&lt;br&gt;
+&lt;strong&gt;r ^ p + r ^ l ^ q&lt;/strong&gt;&lt;br&gt;
+的字符串结构，这样只要把 fez(test,K) 和  fez(m,K) 以及 test 左右两边单独拿出来互相异或就能得到 m 的左右两边，编写代码如下&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import os
+import libnum
+#异或操作照抄
+def xor(a,b):
+    assert len(a)==len(b)
+    c=&amp;quot;&amp;quot;
+    for i in range(len(a)):
+        c+=chr(ord(a[i])^ord(b[i]))
+    return c
+#从fez.log文件得到
+test=&#39;50543fc0bca1bb4f21300f0074990f846a8009febded0b2198324c1b31d2e2563c908dcabbc461f194e70527e03a807e9a478f9a56f7&#39;
+utest=&#39;66bbd551d9847c1a10755987b43f8b214ee9c6ec2949eef01321b0bc42cffce6bdbd604924e5cbd99b7c56cf461561186921087fa1e9&#39;
+um=&#39;44fc6f82bdd0dff9aca3e0e82cbb9d6683516524c245494b89c272a83d2b88452ec0bfa0a73ffb42e304fe3748896111b9bdf4171903&#39;
+#编码为字符
+test = test.decode(&#39;hex&#39;)
+utest = utest.decode(&#39;hex&#39;)
+um = um.decode(&#39;hex&#39;)
+#分成左右两段
+um_l = um[0:27]
+um_r = um[27:54]
+utest_l = utest[0:27]
+utest_r = utest[27:54]
+test_l = test[0:27]
+test_r = test[27:54]
+#异或得到m左右两段
+m_r = xor(xor(um_l, utest_l), test_r)
+m_l = xor(xor(xor(xor(um_r, utest_r), test_r), test_l), m_r)
+#合并
+m = m_l + m_r
+print m
+&lt;/code&gt;&lt;/pre&gt;
 ">Jarvis OJ Crypto Writeup</a>
       </div>
       
